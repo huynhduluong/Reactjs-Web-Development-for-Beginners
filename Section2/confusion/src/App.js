@@ -1,13 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      We will be back
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: []
+    }
+  };
+
+  
+  componentWillMount() {
+    axios('https://api.randomuser.me/?nat=US&results=5').then(response => 
+      this.setState({
+        users: response.data.results
+      })
+    );
+  }
+  
+  render() {
+    return (
+      <div className="App">
+        we will be back
+      </div>
+    );
+  }
 }
 
 export default App;
